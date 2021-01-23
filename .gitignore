@@ -1,0 +1,4 @@
+.idea
+venv
+input_data/*.csv
+
