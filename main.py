@@ -41,11 +41,15 @@ class RKB:
             for data_unit in self.data_list:
                 selected_player = data_unit[column_counter]
                 add_parameter = float(1)
-                # HIT RATE によって変更していく
-                int_hit_rate = int(data_unit[5].split('.')[0])
-                if int_hit_rate > 100:  # 100以上は低く見積もる
-                    add_parameter = float(0.9)
-                elif int_hit_rate > 80:
+                # 回収率 によって変更していく
+                hit_rate = float(data_unit[4].split('%')[0])
+                collect_rate = float(data_unit[5].split('%')[0])
+                if collect_rate > 100:  # 100以上は低く見積もる
+                    if hit_rate < 50:
+                        add_parameter = float(0.5)
+                    else:
+                        add_parameter = float(0.9)
+                elif collect_rate > 80:
                     add_parameter = float(1.2)
                 self.calc_result[current_column]['player_' + selected_player.zfill(2)] += add_parameter
             column_counter += 1
