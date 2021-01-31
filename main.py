@@ -46,7 +46,7 @@ class RKB:
                 collect_rate = float(data_unit[5].split('%')[0])
                 if collect_rate > 100:  # 100以上は低く見積もる
                     if hit_rate < 50:
-                        add_parameter = float(0.5)
+                        add_parameter = float(0.7)
                     else:
                         add_parameter = float(0.9)
                 elif collect_rate > 80:
